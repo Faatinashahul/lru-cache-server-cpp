@@ -5,6 +5,18 @@ conceptually similar to a minimal Redis. Built to demonstrate practical
 command of C++, core data structures & algorithms, and systems design
 (concurrency, networking, thread pooling).
 
+## Problem Statement
+
+Modern applications and websites handle far more read requests than their databases can efficiently serve on their own. Every time a database is queried for the same frequently-accessed data — a user profile, a product listing, a session token — it adds latency and load, even if that same data was just fetched moments ago.
+
+The standard solution is an in-memory cache: a layer that sits between the application and the database, holding frequently-accessed data in RAM so it can be served almost instantly instead of hitting the database every time. But an in-memory cache has a hard constraint — memory is limited. It can't store everything forever, so it needs:
+
+A fixed capacity with an intelligent policy for deciding what to discard when full (this project uses LRU — Least Recently Used — evicting whatever hasn't been accessed in the longest time).
+Fast operations — lookups, insertions, and evictions all need to happen in constant time (O(1)), or the cache itself becomes a bottleneck instead of a solution.
+Safe concurrent access — in real systems, many clients/requests hit the cache at the same time. Without careful design, simultaneous reads and writes can corrupt the underlying data structure or return incorrect results.
+Network accessibility — a cache is only useful as shared infrastructure if multiple separate services or clients can connect to it remotely, not just use it as a local in-process object.
+
+This project builds exactly that from scratch in C++, addressing all four requirements above.
 ## Architecture
 
 ```
