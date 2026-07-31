@@ -103,11 +103,3 @@ each (10,000 total ops) against the live server.
 
 **Measured result (this environment):** 10,000 operations across 20
 concurrent clients, 0 errors, ~60,000 ops/sec.
-
-## What I'd extend next
-- TTL-based expiry as a second eviction policy, benchmarked against LRU
-- LFU (least-frequently-used) as an alternative policy
-- Persistence (periodic snapshot to disk) for crash recovery
-- Replace the coarse mutex with sharded locks (N independent cache
-  shards, key hashed to a shard) if profiling showed lock contention
-  under heavier load
