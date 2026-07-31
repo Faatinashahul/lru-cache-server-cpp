@@ -5,13 +5,6 @@ conceptually similar to a minimal Redis. Built to demonstrate practical
 command of C++, core data structures & algorithms, and systems design
 (concurrency, networking, thread pooling).
 
-## Why this project
-
-Most "I know DSA" claims are backed by LeetCode problems, which are real
-but isolated. This project instead builds a **working system** end-to-end:
-a cache eviction policy implemented from first principles, wrapped in a
-real TCP server that handles many simultaneous clients safely.
-
 ## Architecture
 
 ```
